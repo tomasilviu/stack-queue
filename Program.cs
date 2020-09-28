@@ -98,7 +98,7 @@ namespace BasicTools//Stack and Queue
             a.Push(35);
             a.Push(22);
             a.Push(21);
-            a.Push(666);
+            a.Push(665);
             var b = a.Pop();
             Console.WriteLine(b);
             b = a.Pop();
