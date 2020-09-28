@@ -1,5 +1,5 @@
 ﻿using System;
-namespace BasicTools
+namespace BasicTools//Stack and Queue
 {
     class Stack<T>
     {
