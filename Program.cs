@@ -10,7 +10,7 @@ namespace BasicTools
         protected int m_count;
         protected int m_estimatedLength;
         //Constructor
-        public Stack(int length = 100)//length parameter is the estimated expected length of the stack. If you are not sure you can just leave it blank
+        public Stack(int length = 100)//length parameter is an estimation. If you are not sure you can just leave it blank
         {
             this.m_count = 0;
             this.m_array = new T[length];
