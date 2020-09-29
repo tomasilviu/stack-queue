@@ -76,44 +76,61 @@ namespace BasicTools//Stack and Queue
             }
         }
     }
-    class Queue<T> : Stack<T>//implements public T Pop()
-    {
-        private T[] Skip(T[] arr,int position)
+    public Queue(int length = 100)
         {
-            bool foo = false;
-            T foo2;
-            for (int i = 0; i<=this.m_count; i++)
-            {
-                if (i==position)
-                {
-                    foo = true;
-                    foo2 = this.m_array[i];
-                }
-                if (foo==true && i > position)
-                {
-                    this.m_array[i - 1] = this.m_array[i];
-                }
-            }
-            return this.m_array;
+            this.m_length = length;
+            this.m_front = 0;
+            this.m_rear = 0;
+            this.m_array = new T[length+1];
+            this.m_isEmpty = true;
+            this.m_isFull = false;
+            this.m_count = 0;
         }
-        public T Pop()
+        //Methods
+        public bool isFull()//returns true if the ring buffer is full and false otherwise
         {
-            if (this.m_count > 0)
+            return this.m_isFull;
+        }
+        public bool isEmpty()//returns true if the ring buffer is empty and false otherwise
+        {
+            return this.m_isEmpty;
+        }
+        public void Push(T element)
+        {
+            this.m_array[this.m_front] = element;
+            this.m_front = (this.m_front + 1) % this.m_length;
+            this.m_isEmpty = false;
+            if (this.m_rear == this.m_front)
             {
-                this.m_count--;
-                var temp = this.m_array[0];
-                this.m_array = this.Skip(this.m_array,0);
-                return temp;
+                this.m_isFull = true;
+                this.m_front++;
             }
             else
             {
-                this.m_count = 0;
-                return this.m_array[this.m_count];
-            }  
+                this.m_isFull = false;
+            }
         }
-        //Destructor
-        ~Queue()
-        { }
+        public T Pop()
+        {
+            if (!this.m_isEmpty)
+            {
+                T toReturn = this.m_array[this.m_rear];
+                this.m_rear = (this.m_rear + this.m_length + 1) % this.m_length;
+                if (this.m_isFull)
+                {
+                    this.m_isFull = false;
+                }
+                return toReturn;
+            }
+            else
+            {
+                return default(T);
+            }
+        }
+        public T Peak()
+        {
+            return this.m_array[this.m_rear];
+        }
     }
     class Program
     {
