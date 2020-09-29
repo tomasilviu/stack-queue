@@ -1,7 +1,7 @@
 ﻿using System;
 namespace BasicTools//Stack and Queue
 {
-    class Stack<T>
+     class Stack<T>
     {
         //Members
         protected T[] m_array;
@@ -17,9 +17,9 @@ namespace BasicTools//Stack and Queue
         //Methods
         public void Push(T element)
         {
-            if(this.m_count == this.m_estimatedLength)
+            if (this.m_count == this.m_estimatedLength)
             {
-                Array.Resize(ref this.m_array, this.m_estimatedLength*2);
+                Array.Resize(ref this.m_array, this.m_estimatedLength * 2);
                 this.m_estimatedLength = this.m_estimatedLength * 2;
             }
             this.m_array[this.m_count] = element;
@@ -30,18 +30,51 @@ namespace BasicTools//Stack and Queue
             if (this.m_count > 0)
             {//delete element by moving the counter
                 this.m_count--;
+                if (this.m_count < this.m_estimatedLength / 2)
+                {
+                    Array.Resize(ref this.m_array, this.m_estimatedLength / 2);
+                    this.m_estimatedLength = this.m_estimatedLength / 2;
+                }
                 return this.m_array[this.m_count];
             }
             else
             {
-                this.m_count = 0;
-                return this.m_array[this.m_count];
+                return default(T);
             }
-            return default(T);
         }
-        //Destructor
-        ~Stack()
-        { }
+        public bool isEmpty()
+        {
+           if(this.m_count==0)
+            {
+                return true;
+            }
+           else
+            {
+                return false;
+            }
+        }
+        public bool isFull()
+        {
+            if (this.m_count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public T Peak()
+        {
+            if (this.isFull())
+            {
+                return this.m_array[0];
+            }
+            else
+            {
+                return default(T);
+            }
+        }
     }
     class Queue<T> : Stack<T>//implements public T Pop()
     {
