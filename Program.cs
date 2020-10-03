@@ -170,7 +170,7 @@ namespace BasicTools//Stack and Queue
                 return toReturn;
             }
         }
-        public T Peak()
+        public T Peek()
         {
             return this.m_array[this.m_rear];
         }
