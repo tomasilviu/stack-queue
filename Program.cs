@@ -64,7 +64,7 @@ namespace BasicTools//Stack and Queue
                 return false;
             }
         }
-        public T Peak()
+        public T Peek()
         {
             if (this.isFull())
             {
