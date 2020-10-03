@@ -161,7 +161,7 @@ namespace BasicTools//Stack and Queue
         {
             if (this.m_rear > this.m_front)
             {
-                return this.m_rear - this.m_front;
+                return this.m_length - this.m_front;
             }
             if (this.m_front > this.m_rear)
             {
