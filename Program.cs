@@ -108,25 +108,6 @@ namespace BasicTools//Stack and Queue
         {
             return this.m_length;
         }
-        public int CurrentLength()
-        {
-            if (this.m_rear > this.m_front)
-            {
-                return this.m_rear - this.m_front;
-            }
-            if (this.m_front > this.m_rear)
-            {
-                return this.m_front - this.m_rear;
-            }
-            if (this.m_rear == this.m_front && this.m_isFull)
-            {
-                return this.m_length;
-            }
-            else
-            {
-                return 0;
-            }
-        }
         public void IncreasePointers()
         {
             this.m_front = (this.m_front + 1) % this.m_length;
@@ -168,6 +149,31 @@ namespace BasicTools//Stack and Queue
                     this.m_isEmpty = true;
                 }
                 return toReturn;
+            }
+        }
+        public void ShowCurrentLength()
+        {
+             Console.WriteLine("The current length is:");
+             int toShow = CurrentLength;
+             Console.WriteLine(toShow);
+        }
+        public int CurrentLength()
+        {
+            if (this.m_rear > this.m_front)
+            {
+                return this.m_rear - this.m_front;
+            }
+            if (this.m_front > this.m_rear)
+            {
+                return this.m_front - this.m_rear;
+            }
+            if (this.m_rear == this.m_front && this.m_isFull)
+            {
+                return this.m_length;
+            }
+            else
+            {
+                return 0;
             }
         }
         public T Peek()
@@ -223,6 +229,7 @@ namespace BasicTools//Stack and Queue
             Console.WriteLine(b);
             a.Push(3);
             a.Push(4);
+            a.ShowLength();//2
             a.Push(5);
             a.Push(6);
             a.Show();//3 4 5 6
