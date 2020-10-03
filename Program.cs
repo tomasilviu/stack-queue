@@ -174,6 +174,38 @@ namespace BasicTools//Stack and Queue
         {
             return this.m_array[this.m_rear];
         }
+        public void Show(int counter = -1)
+        {
+            if (this.m_isEmpty)
+            {
+                Console.WriteLine("Queue is empty");
+                return;
+            }
+            else
+            {
+                if (counter == (this.m_front-1)%this.m_length)
+                {
+                    T toShow = this.m_array[counter];
+                    Console.WriteLine(toShow);
+                    return;
+                }
+                if (counter == -1)
+                {
+                    counter = this.m_rear;
+                    T toShow = this.m_array[counter];
+                    Console.WriteLine(toShow);
+                    counter = (counter + 1) % this.m_length;
+                    this.Show(counter);
+                }
+                else
+                {
+                    T toShow = this.m_array[counter];
+                    Console.WriteLine(toShow);
+                    counter = (counter + 1) % this.m_length;
+                    this.Show(counter);
+                }
+            }
+        }
     }
     class Program
     {
@@ -193,6 +225,7 @@ namespace BasicTools//Stack and Queue
             a.Push(4);
             a.Push(5);
             a.Push(6);
+            a.Show();//3 4 5 6
             a.Push(7);
             a.Push(8);
             a.Push(9);
