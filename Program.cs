@@ -1,7 +1,7 @@
 ﻿using System;
 namespace BasicTools//Stack and Queue
 {
-     class Stack<T>
+    class Stack<T>
     {
         //Members
         protected T[] m_array;
@@ -42,33 +42,22 @@ namespace BasicTools//Stack and Queue
                 return default(T);
             }
         }
-        public bool isEmpty()
-        {
-           if(this.m_count==0)
-            {
-                return true;
-            }
-           else
-            {
-                return false;
-            }
-        }
-        public bool isFull()
+        public bool isEmpty()//Returns true if stack is full and false for empty
         {
             if (this.m_count > 0)
             {
-                return true;
+                return false;
             }
             else
             {
-                return false;
+                return true;
             }
         }
         public T Peek()
         {
-            if (this.isFull())
+            if (!this.isEmpty())
             {
-                return this.m_array[0];
+                return this.m_array[this.m_count-1];
             }
             else
             {
