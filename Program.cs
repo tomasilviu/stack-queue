@@ -87,11 +87,29 @@ namespace BasicTools//Stack and Queue
         //Methods
         public bool isFull()
         {
-            return this.m_isFull;
+            if(this.CurrentLength()==this.m_length)
+            {
+                this.m_isFull = true;
+                return true;
+            }
+            else
+            {
+                this.m_isFull = false;
+                return false;
+            }
         }
         public bool isEmpty()
         {
-            return this.m_isEmpty;
+            if(this.CurrentLength()==0)
+            {
+                this.m_isEmpty = true;
+                return true;
+            }
+            else
+            {
+                this.m_isEmpty = false;
+                return false;
+            }
         }
         public int MaxLength()
         {
@@ -100,40 +118,42 @@ namespace BasicTools//Stack and Queue
         public void IncreasePointers()
         {
             this.m_front = (this.m_front + 1) % this.m_length;
-            if (this.m_isFull)
+            if (this.isFull())
             {
                 this.m_rear = (this.m_rear + 1) % this.m_length;
             }
         }
         public void Push(T element)
         {
-            if (this.m_isEmpty)
+            if (this.isEmpty())
             {
                 this.m_isEmpty = false;
             }
+            int exFront = this.m_front;
             this.m_array[this.m_front] = element;
             this.IncreasePointers();
-            if(!this.m_isEmpty && this.m_rear == this.m_front)
+            if (this.m_rear == this.m_front)
             {
+                Console.WriteLine("Queue is full");
                 this.m_isFull = true;
             }
         }
-
         public T Pop()
         {
-            if (this.m_isEmpty)
+            if (this.isEmpty())
             {
                 return default(T);
             }
             else
             {
-                T toReturn = this.m_array[this.m_rear];
+                T toReturn;
+                toReturn = this.m_array[this.m_rear];
                 this.m_rear = (this.m_rear + 1) % this.m_length;
-                if (this.m_isFull)
+                if (this.isFull())
                 {
                     this.m_isFull = false;
                 }
-                if (this.m_front == this.m_rear)
+                if (this.m_rear == this.m_front && !this.m_isFull)
                 {
                     this.m_isEmpty = true;
                 }
@@ -156,7 +176,7 @@ namespace BasicTools//Stack and Queue
             {
                 return this.m_front - this.m_rear;
             }
-            if (this.m_rear == this.m_front && this.m_isFull)
+            if (this.m_front == this.m_rear && this.m_isFull)
             {
                 return this.m_length;
             }
