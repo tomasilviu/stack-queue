@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 namespace BasicTools//Stack and Queue
 {
     class Stack<T>
@@ -160,10 +160,10 @@ namespace BasicTools//Stack and Queue
                 return toReturn;
             }
         }
-        public void ShowCurrentLength()
+        public void ShowLength()
         {
              Console.WriteLine("The current length is:");
-             int toShow = CurrentLength;
+             int toShow = CurrentLength();
              Console.WriteLine(toShow);
         }
         public int CurrentLength()
